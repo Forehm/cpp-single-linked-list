@@ -2,7 +2,6 @@
 
 #include "single-linked-list.h"
 
-// Эта функция проверяет работу класса SingleLinkedList
 void Test() {
     struct DeletionSpy {
         ~DeletionSpy() {
@@ -13,7 +12,6 @@ void Test() {
         int* deletion_counter_ptr = nullptr;
     };
 
-    // Проверка PopFront
     {
         SingleLinkedList<int> numbers{3, 14, 15, 92, 6};
         numbers.PopFront();
@@ -28,7 +26,6 @@ void Test() {
         assert(deletion_counter == 1);
     }
 
-    // Доступ к позиции, предшествующей begin
     {
         SingleLinkedList<int> empty_list;
         const auto& const_empty_list = empty_list;
@@ -43,8 +40,7 @@ void Test() {
         assert(++numbers.cbefore_begin() == const_numbers.begin());
     }
 
-    // Вставка элемента после указанной позиции
-    {  // Вставка в пустой список
+    {  
         {
             SingleLinkedList<int> lst;
             const auto inserted_item_pos = lst.InsertAfter(lst.before_begin(), 123);
@@ -53,7 +49,6 @@ void Test() {
             assert(*inserted_item_pos == 123);
         }
 
-        // Вставка в непустой список
         {
             SingleLinkedList<int> lst{1, 2, 3};
             auto inserted_item_pos = lst.InsertAfter(lst.before_begin(), 123);
@@ -70,7 +65,7 @@ void Test() {
         };
     }
 
-    // Вспомогательный класс, бросающий исключение после создания N-копии
+  
     struct ThrowOnCopy {
         ThrowOnCopy() = default;
         explicit ThrowOnCopy(int& copy_counter) noexcept
@@ -87,14 +82,12 @@ void Test() {
                 }
             }
         }
-        // Присваивание элементов этого типа не требуется
+    
         ThrowOnCopy& operator=(const ThrowOnCopy& rhs) = delete;
-        // Адрес счётчика обратного отсчёта. Если не равен nullptr, то уменьшается при каждом копировании.
-        // Как только обнулится, конструктор копирования выбросит исключение
+       
         int* countdown_ptr = nullptr;
     };
 
-    // Проверка обеспечения строгой гарантии безопасности исключений
     {
         bool exception_was_thrown = false;
         for (int max_copy_counter = 10; max_copy_counter >= 0; --max_copy_counter) {
@@ -112,7 +105,6 @@ void Test() {
         assert(exception_was_thrown);
     }
 
-    // Удаление элементов после указанной позиции
     {
         {
             SingleLinkedList<int> lst{1, 2, 3, 4};
