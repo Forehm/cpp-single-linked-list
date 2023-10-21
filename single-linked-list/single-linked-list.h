@@ -95,16 +95,19 @@ public:
     {
     }
 
-    SingleLinkedList(std::initializer_list<Type> values) {
+    SingleLinkedList(std::initializer_list<Type> values) 
+    {
         Assign(values.begin(), values.end());
     }
 
-    SingleLinkedList(const SingleLinkedList& other) {
+    SingleLinkedList(const SingleLinkedList& other) 
+    {
         Assign(other.begin(), other.end());
     }
 
 
-    SingleLinkedList& operator=(const SingleLinkedList& rhs) {
+    SingleLinkedList& operator=(const SingleLinkedList& rhs) 
+    {
         if (this != &rhs) {
             auto rhs_copy(rhs);
             swap(rhs_copy);
@@ -112,7 +115,8 @@ public:
         return *this;
     }
 
-    void swap(SingleLinkedList& other) noexcept {
+    void swap(SingleLinkedList& other) noexcept
+    {
         std::swap(head_.next_node, other.head_.next_node);
         std::swap(size_, other.size_);
     }
