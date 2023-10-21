@@ -8,14 +8,17 @@
 #include <algorithm>
 
 template <typename Type>
-class SingleLinkedList {
+class SingleLinkedList 
+{
 
-    struct Node {
+    struct Node 
+    {
         Node() = default;
 
         Node(const Type& val, Node* next)
             : value(val)
-            , next_node(next) {
+            , next_node(next) 
+    {
         }
         Type value;
         Node* next_node = nullptr;
@@ -40,46 +43,55 @@ class SingleLinkedList {
 
         BasicIterator() = default;
 
-        BasicIterator(const BasicIterator<Type>& other) noexcept {
+        BasicIterator(const BasicIterator<Type>& other) noexcept 
+        {
             node_ = other.node_;
         }
 
         BasicIterator& operator=(const BasicIterator& rhs) = default;
 
-        [[nodiscard]] bool operator==(const BasicIterator<const Type>& rhs) const noexcept {
+        [[nodiscard]] bool operator==(const BasicIterator<const Type>& rhs) const noexcept 
+        {
             return node_ == rhs.node_;
         }
 
-        [[nodiscard]] bool operator!=(const BasicIterator<const Type>& rhs) const noexcept {
+        [[nodiscard]] bool operator!=(const BasicIterator<const Type>& rhs) const noexcept 
+        {
             return !(node_ == rhs.node_);
         }
 
-        [[nodiscard]] bool operator==(const BasicIterator<Type>& rhs) const noexcept {
+        [[nodiscard]] bool operator==(const BasicIterator<Type>& rhs) const noexcept 
+        {
             return node_ == rhs.node_;
         }
 
-        [[nodiscard]] bool operator!=(const BasicIterator<Type>& rhs) const noexcept {
+        [[nodiscard]] bool operator!=(const BasicIterator<Type>& rhs) const noexcept 
+        {
             return !(node_ == rhs.node_);
         }
 
-        BasicIterator& operator++() noexcept {
+        BasicIterator& operator++() noexcept 
+        {
             assert(node_ != nullptr);
             node_ = node_->next_node;
             return *this;
         }
 
-        BasicIterator operator++(int) noexcept {
+        BasicIterator operator++(int) noexcept
+        {
             auto old_value(*this);
             ++(*this);
             return old_value;
         }
 
-        [[nodiscard]] reference operator*() const noexcept {
+        [[nodiscard]] reference operator*() const noexcept 
+        {
             assert(node_ != nullptr);
             return node_->value;
         }
 
-        [[nodiscard]] pointer operator->() const noexcept {
+        [[nodiscard]] pointer operator->() const noexcept 
+        {
             assert(node_ != nullptr);
             return &node_->value;
         }
