@@ -101,7 +101,6 @@ class SingleLinkedList
     };
 
 public:
-
     SingleLinkedList() :
         head_(Node()), size_(0)
     {
