@@ -117,7 +117,6 @@ public:
         Assign(other.begin(), other.end());
     }
 
-
     SingleLinkedList& operator=(const SingleLinkedList& rhs) 
     {
         if (this != &rhs) {
