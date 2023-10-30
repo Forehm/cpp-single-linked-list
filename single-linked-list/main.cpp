@@ -137,6 +137,7 @@ void Test() {
     }
 }
 
-int main() {
+int main() 
+{
     Test();
 }
