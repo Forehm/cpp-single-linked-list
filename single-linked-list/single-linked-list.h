@@ -10,7 +10,6 @@
 template <typename Type>
 class SingleLinkedList 
 {
-
     struct Node 
     {
         Node() = default;
