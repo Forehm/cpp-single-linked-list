@@ -67,6 +67,7 @@ void Test() {
     }
 
   
+
     struct ThrowOnCopy {
         ThrowOnCopy() = default;
         explicit ThrowOnCopy(int& copy_counter) noexcept
